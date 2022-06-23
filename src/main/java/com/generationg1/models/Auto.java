@@ -2,6 +2,7 @@ package com.generationg1.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 @Table(name="Autos")
@@ -25,6 +26,16 @@ public class Auto {
     @NotNull()
     private String modelo;
     private String nombre;
+
+
+    // OPCIONALES: SIRVEN PARA GESTION DE BASE DE DATOS
+    // NO AGREGAR EN CONSTRUCTORES NI EN GETTER SETTER
+    @Column(updatable = false) // INDicA QUQE NO VA A PODER SER ACTUALIZAR
+    private Date createdAt; // guarda fecha cuando se inserta dato
+
+    private Date updatedAt; // Guarda fecha cuando se actualiza dato
+    // private Date deletedAt; // Fecha de eliminacion logica(cambio de estado, no borrar)
+
 
 
 
@@ -140,5 +151,31 @@ public class Auto {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    /** metodos*/
+    @PrePersist
+    protected void onCreate(){
+        this.createdAt = new Date();
+    }
+    @PreUpdate
+    protected void onUpdate(){
+        this.updatedAt = new Date();
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
