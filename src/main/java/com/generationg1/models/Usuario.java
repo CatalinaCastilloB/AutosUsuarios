@@ -3,6 +3,7 @@ package com.generationg1.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Entity   //transforma el objeto en entidad, de momento trabajaremos con persistence
 @Table(name="Usuarios") //diferenciar el obj de la tabla
@@ -27,6 +28,18 @@ public class Usuario {
     @NotNull()
     @Size(min=6, max=8)
     private String password;
+
+    @Column(updatable = false)
+    private Date createdAt;
+
+    private Date uptatedAt;
+
+    //OnetoOne
+    @OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Licencia licencia;
+    //la cascada evita que elimine un dato de una tabla sin antes romper la relacion con el dato de la otra tabla
+
+
 
 
     //constructor

@@ -45,8 +45,8 @@
         <td>${auto.marca}</td>
         <td>${auto.modelo}</td>
         <td>${auto.anio}</td>
-        <th><a href="Auto/editar/${auto.id }" class="btn btn-success">editar</a></th>
-        <th><a href="Auto/delete/${auto.id}" class="btn btn-danger">elimiar</a></th>
+        <th><a href="/ingresoAutomovil/auto/editar/${auto.id }" class="btn btn-success">editar</a></th>
+        <th><a href="/ingresoAutomovil/auto/delete/${auto.id}" class="btn btn-danger">elimiar</a></th>
 
 
     </tr>

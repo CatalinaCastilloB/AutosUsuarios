@@ -1,6 +1,9 @@
 package com.generationg1.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -14,6 +17,7 @@ public class Licencia {
     private Long id;
 
     private Integer numero;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date fechaVencimiento;
     private String clase;
     private String estado;
@@ -38,14 +42,18 @@ public class Licencia {
 
     //opcionales, sirven para la gestion de la base dato
     @Column(updatable = false)//esta columna especifica nunca se va a actualizar atravez del sistema
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date createdAt;//Para saber en que momento fue insertada en la base de datos
 
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updatedAt;//Para cuando se actualizo
     //private Date deletedAt;//Fecha de eliminacion logica, no borramos el registro solo lo damos de baja
 
 
     //Relaciones one to one (1a1)
     @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "usuario_id") //este seria el fk de la otra entidad
+    private Usuario usuario;
     //eager busca todas las relaciones que exiten
     //lazy solo busca una relacion cuando se le especifica
 
@@ -99,5 +107,14 @@ public class Licencia {
     protected void onUpdate(){
         this.updatedAt = new Date();
     }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
 
 }

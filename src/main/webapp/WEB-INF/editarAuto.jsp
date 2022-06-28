@@ -31,7 +31,7 @@
 <div class = container>
 
     <%--@elvariable id="auto" type="Auto"--%>
-    <form:form action="/ingresoAutomovil/Auto/actualizar/${auto.id}" method="post" modelAttribute="auto">
+    <form:form action="/ingresoAutomovil/auto/actualizar/${auto.id}" method="post" modelAttribute="auto">
         <form:label class="form-control" path="anio">Anio:</form:label>
         <form:input class="form-control" path="anio"></form:input>
         <br>

@@ -30,7 +30,7 @@ public class automovilController {
 
 
 
-    @PostMapping("/Auto") //todos los atributos de usuario llenos
+    @PostMapping("/auto") //todos los atributos de usuario llenos
     public String guardarAuto(@Valid @ModelAttribute("auto") Auto auto,
                                  BindingResult resultado, Model model){
         if(resultado.hasErrors()){//se detiene la ejecucion para mostrar mensajes de error, captura si hay un error en el ingreso de datos
@@ -58,7 +58,7 @@ public class automovilController {
         model.addAttribute("autosCapturados", listaAutos);
         return "mostrarAutos.jsp";
     }
-    @RequestMapping("/Auto/editar/{id}")
+    @RequestMapping("/auto/editar/{id}")
     public String editar(@PathVariable("id") Long id, Model model) {
         System.out.println("el id es: "+id);
         Auto auto = autoService.buscarID(id);
@@ -68,7 +68,7 @@ public class automovilController {
 
     }
 
-    @RequestMapping("/Auto/actualizar/{id}")
+    @RequestMapping("/auto/actualizar/{id}")
     public String actualizarID(@PathVariable("id") Long id,@ModelAttribute("auto") Auto auto, Model model) {
         System.out.println("el id es: "+id);
 
@@ -79,7 +79,7 @@ public class automovilController {
 
     }
 
-    @RequestMapping("/Auto/delete/{id}")
+    @RequestMapping("/auto/delete/{id}")
     public String eliminarAuto(@PathVariable("id") Long id, Model model){
 
         autoService.eliminarId(id);
